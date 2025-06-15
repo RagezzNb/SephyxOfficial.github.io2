@@ -1,0 +1,436 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: hsl(240, 10%, 3.9%);
+  --foreground: hsl(0, 0%, 98%);
+  --muted: hsl(240, 3.7%, 15.9%);
+  --muted-foreground: hsl(240, 5%, 64.9%);
+  --popover: hsl(240, 10%, 3.9%);
+  --popover-foreground: hsl(0, 0%, 98%);
+  --card: hsl(240, 10%, 3.9%);
+  --card-foreground: hsl(0, 0%, 98%);
+  --border: hsl(240, 3.7%, 15.9%);
+  --input: hsl(240, 3.7%, 15.9%);
+  --primary: hsl(142, 100%, 50%);
+  --primary-foreground: hsl(240, 10%, 3.9%);
+  --secondary: hsl(240, 3.7%, 15.9%);
+  --secondary-foreground: hsl(0, 0%, 98%);
+  --accent: hsl(240, 3.7%, 15.9%);
+  --accent-foreground: hsl(0, 0%, 98%);
+  --destructive: hsl(0, 62.8%, 30.6%);
+  --destructive-foreground: hsl(0, 0%, 98%);
+  --ring: hsl(240, 4.9%, 83.9%);
+  --radius: 0.5rem;
+  
+  /* Custom Cyberpunk Colors */
+  --neon-green: hsl(142, 100%, 50%);
+  --neon-green-dark: hsl(142, 100%, 45%);
+  --cyber-purple: hsl(262, 83%, 58%);
+  --cyber-purple-light: hsl(262, 83%, 65%);
+  --cyber-blue: hsl(195, 100%, 50%);
+  --cyber-blue-light: hsl(195, 100%, 55%);
+  --dark-bg: hsl(0, 0%, 4%);
+  --dark-card: hsl(0, 0%, 7%);
+  --dark-border: hsl(0, 0%, 10%);
+}
+
+.dark {
+  --background: hsl(240, 10%, 3.9%);
+  --foreground: hsl(0, 0%, 98%);
+  --muted: hsl(240, 3.7%, 15.9%);
+  --muted-foreground: hsl(240, 5%, 64.9%);
+  --popover: hsl(240, 10%, 3.9%);
+  --popover-foreground: hsl(0, 0%, 98%);
+  --card: hsl(240, 10%, 3.9%);
+  --card-foreground: hsl(0, 0%, 98%);
+  --border: hsl(240, 3.7%, 15.9%);
+  --input: hsl(240, 3.7%, 15.9%);
+  --primary: hsl(142, 100%, 50%);
+  --primary-foreground: hsl(240, 10%, 3.9%);
+  --secondary: hsl(240, 3.7%, 15.9%);
+  --secondary-foreground: hsl(0, 0%, 98%);
+  --accent: hsl(240, 3.7%, 15.9%);
+  --accent-foreground: hsl(0, 0%, 98%);
+  --destructive: hsl(0, 62.8%, 30.6%);
+  --destructive-foreground: hsl(0, 0%, 98%);
+  --ring: hsl(240, 4.9%, 83.9%);
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply font-sans antialiased bg-background text-foreground;
+    font-family: 'Inter', sans-serif;
+  }
+
+  .font-orbitron {
+    font-family: 'Orbitron', monospace;
+  }
+}
+
+@layer utilities {
+  /* Cyberpunk Grid Background */
+  .cyber-grid {
+    background-image: 
+      linear-gradient(rgba(0, 255, 65, 0.1) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(0, 255, 65, 0.1) 1px, transparent 1px);
+    background-size: 50px 50px;
+  }
+  
+  /* Holographic Effect */
+  .holographic {
+    background: linear-gradient(45deg, var(--neon-green), var(--cyber-purple), var(--cyber-blue), var(--cyber-purple-light));
+    background-size: 400% 400%;
+    animation: holographic 3s ease infinite;
+  }
+  
+  @keyframes holographic {
+    0%, 100% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+  }
+  
+  /* Glitch Effect */
+  .glitch-effect {
+    position: relative;
+  }
+  
+  .glitch-effect::before,
+  .glitch-effect::after {
+    content: attr(data-text);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
+  
+  .glitch-effect::before {
+    animation: glitch-1 0.5s infinite;
+    color: var(--neon-green);
+    z-index: -1;
+  }
+  
+  .glitch-effect::after {
+    animation: glitch-2 0.5s infinite;
+    color: var(--cyber-purple);
+    z-index: -2;
+  }
+  
+  @keyframes glitch-1 {
+    0%, 100% { transform: translate(0); }
+    20% { transform: translate(-2px, 2px); }
+    40% { transform: translate(-2px, -2px); }
+    60% { transform: translate(2px, 2px); }
+    80% { transform: translate(2px, -2px); }
+  }
+  
+  @keyframes glitch-2 {
+    0%, 100% { transform: translate(0); }
+    20% { transform: translate(2px, 2px); }
+    40% { transform: translate(2px, -2px); }
+    60% { transform: translate(-2px, 2px); }
+    80% { transform: translate(-2px, -2px); }
+  }
+
+  /* Neon Border */
+  .neon-border {
+    border: 1px solid var(--neon-green);
+    box-shadow: 0 0 10px rgba(0, 255, 65, 0.3), inset 0 0 10px rgba(0, 255, 65, 0.1);
+  }
+
+  /* Neon Glow */
+  .neon-glow {
+    animation: glow 2s ease-in-out infinite alternate;
+  }
+  
+  @keyframes glow {
+    from {
+      box-shadow: 0 0 5px var(--neon-green), 0 0 10px var(--neon-green), 0 0 15px var(--neon-green);
+    }
+    to {
+      box-shadow: 0 0 10px var(--neon-green), 0 0 20px var(--neon-green), 0 0 30px var(--neon-green);
+    }
+  }
+
+  /* Float Animation */
+  .float-animation {
+    animation: float 3s ease-in-out infinite;
+  }
+  
+  @keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+  }
+
+  /* Slide Up Animation */
+  .slide-up {
+    animation: slideUp 0.6s ease-out;
+  }
+  
+  @keyframes slideUp {
+    from {
+      transform: translateY(30px);
+      opacity: 0;
+    }
+    to {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }
+
+  /* Product Card Hover Effect */
+  .product-card {
+    transition: all 0.3s ease;
+  }
+  
+  .product-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 20px 40px rgba(0, 255, 65, 0.2);
+  }
+
+  /* Custom Colors */
+  .bg-neon-green {
+    background-color: var(--neon-green);
+  }
+  
+  .text-neon-green {
+    color: var(--neon-green);
+  }
+  
+  .bg-cyber-purple {
+    background-color: var(--cyber-purple);
+  }
+  
+  .text-cyber-purple {
+    color: var(--cyber-purple);
+  }
+  
+  .bg-cyber-blue {
+    background-color: var(--cyber-blue);
+  }
+  
+  .text-cyber-blue {
+    color: var(--cyber-blue);
+  }
+  
+  .bg-dark-bg {
+    background-color: var(--dark-bg);
+  }
+  
+  .bg-dark-card {
+    background-color: var(--dark-card);
+  }
+  
+  .border-dark-border {
+    border-color: var(--dark-border);
+  }
+
+  /* Hover Colors */
+  .hover\:bg-neon-green-dark:hover {
+    background-color: var(--neon-green-dark);
+  }
+  
+  .hover\:bg-cyber-purple-light:hover {
+    background-color: var(--cyber-purple-light);
+  }
+  
+  .hover\:text-neon-green:hover {
+    color: var(--neon-green);
+  }
+  
+  .hover\:border-neon-green:hover {
+    border-color: var(--neon-green);
+  }
+  
+  .hover\:border-cyber-purple:hover {
+    border-color: var(--cyber-purple);
+  }
+
+  /* Vault-specific animations */
+  .vault-glitch {
+    animation: vault-glitch 2s infinite;
+  }
+  
+  @keyframes vault-glitch {
+    0%, 100% { 
+      transform: translate(0);
+      filter: hue-rotate(0deg);
+    }
+    10% { 
+      transform: translate(-2px, 2px);
+      filter: hue-rotate(90deg);
+    }
+    20% { 
+      transform: translate(-2px, -2px);
+      filter: hue-rotate(180deg);
+    }
+    30% { 
+      transform: translate(2px, 2px);
+      filter: hue-rotate(270deg);
+    }
+    40% { 
+      transform: translate(2px, -2px);
+      filter: hue-rotate(360deg);
+    }
+  }
+  
+  /* Starfield animation */
+  .starfield {
+    background: radial-gradient(2px 2px at 20px 30px, #eee, transparent),
+                radial-gradient(2px 2px at 40px 70px, rgba(255,255,255,0.8), transparent),
+                radial-gradient(1px 1px at 90px 40px, #fff, transparent),
+                radial-gradient(1px 1px at 130px 80px, rgba(255,255,255,0.6), transparent),
+                radial-gradient(2px 2px at 160px 30px, rgba(255,255,255,0.7), transparent);
+    background-repeat: repeat;
+    background-size: 200px 100px;
+    animation: starfield-move 20s linear infinite;
+  }
+  
+  @keyframes starfield-move {
+    from { background-position: 0 0; }
+    to { background-position: -200px -100px; }
+  }
+  
+  /* Flickering neon effect */
+  .neon-flicker {
+    animation: neon-flicker 3s infinite alternate;
+  }
+  
+  @keyframes neon-flicker {
+    0%, 18%, 22%, 25%, 53%, 57%, 100% {
+      text-shadow: 
+        0 0 4px #fff,
+        0 0 11px #fff,
+        0 0 19px #fff,
+        0 0 40px var(--neon-green),
+        0 0 80px var(--neon-green),
+        0 0 90px var(--neon-green),
+        0 0 100px var(--neon-green),
+        0 0 150px var(--neon-green);
+    }
+    
+    20%, 24%, 55% {        
+      text-shadow: none;
+    }
+  }
+  
+  /* 3D Tilt Effect */
+  .tilt-3d {
+    transition: transform 0.3s ease;
+  }
+  
+  .tilt-3d:hover {
+    transform: perspective(1000px) rotateX(10deg) rotateY(10deg) scale(1.05);
+  }
+  
+  /* Static distortion */
+  .static-distortion {
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .static-distortion::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: repeating-linear-gradient(
+      90deg,
+      transparent,
+      transparent 98px,
+      rgba(255, 255, 255, 0.1) 100px
+    );
+    animation: static-scan 2s linear infinite;
+    pointer-events: none;
+  }
+  
+  @keyframes static-scan {
+    0% { transform: translateX(-100%); }
+    100% { transform: translateX(100%); }
+  }
+
+  /* Matrix rain effect */
+  .matrix-rain {
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .matrix-rain::after {
+    content: '';
+    position: absolute;
+    top: -100%;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: 
+      linear-gradient(0deg, transparent 70%, rgba(0, 255, 65, 0.1) 100%),
+      repeating-linear-gradient(
+        0deg,
+        transparent,
+        transparent 10px,
+        rgba(0, 255, 65, 0.05) 12px
+      );
+    animation: matrix-fall 3s linear infinite;
+    pointer-events: none;
+  }
+  
+  @keyframes matrix-fall {
+    0% { transform: translateY(-100%); opacity: 0; }
+    10% { opacity: 1; }
+    90% { opacity: 1; }
+    100% { transform: translateY(100vh); opacity: 0; }
+  }
+
+  /* Holographic shimmer */
+  .holographic-shimmer {
+    background: linear-gradient(
+      45deg,
+      transparent 30%,
+      rgba(255, 255, 255, 0.1) 50%,
+      transparent 70%
+    );
+    background-size: 200% 200%;
+    animation: shimmer 3s ease-in-out infinite;
+  }
+  
+  @keyframes shimmer {
+    0% { background-position: -200% -200%; }
+    50% { background-position: 200% 200%; }
+    100% { background-position: -200% -200%; }
+  }
+
+  /* Data stream effect */
+  .data-stream {
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .data-stream::before {
+    content: '01101010 11010011 10110100 01010101';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 200%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    font-family: 'Courier New', monospace;
+    font-size: 8px;
+    color: rgba(0, 255, 65, 0.3);
+    animation: data-flow 4s linear infinite;
+    pointer-events: none;
+    white-space: nowrap;
+  }
+  
+  @keyframes data-flow {
+    0% { transform: translateX(-100%); }
+    100% { transform: translateX(100%); }
+  }
+}
